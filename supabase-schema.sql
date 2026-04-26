@@ -50,3 +50,7 @@ create policy "Allow all on push_subscriptions" on push_subscriptions for all us
 -- Storage 버킷
 insert into storage.buckets (id, name, public) values ('event-images', 'event-images', true);
 create policy "Allow public access on event-images" on storage.objects for all using (bucket_id = 'event-images') with check (bucket_id = 'event-images');
+
+-- 프로필 사진 버킷
+insert into storage.buckets (id, name, public) values ('profiles', 'profiles', true);
+create policy "Allow public access on profiles" on storage.objects for all using (bucket_id = 'profiles') with check (bucket_id = 'profiles');

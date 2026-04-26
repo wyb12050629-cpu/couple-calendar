@@ -1,6 +1,7 @@
 'use client';
 
 import { getDDay, isBirthday } from '@/lib/dates';
+import ProfilePhoto from './ProfilePhoto';
 
 export default function DdayBanner() {
   const dday = getDDay();
@@ -10,10 +11,7 @@ export default function DdayBanner() {
   return (
     <div className="px-4 pt-3 space-y-2">
       <div className="bg-paper border border-line rounded-lg px-4 py-3 flex items-center gap-3 rotate-[-0.5deg] shadow-sm">
-        {/* 프로필 placeholder */}
-        <div className="w-10 h-10 rounded-full border-2 border-line bg-line/30 flex-shrink-0 flex items-center justify-center">
-          <span className="text-xs text-caption">📷</span>
-        </div>
+        <ProfilePhoto size={44} />
         <div className="flex-1 min-w-0">
           <p className="text-xs font-normal text-caption/70">유빈 & 문성</p>
           <p className="text-2xl font-bold text-yubin leading-tight">
