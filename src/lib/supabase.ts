@@ -27,6 +27,7 @@ export type Gratitude = {
   to_user: 'yubin' | 'munsung';
   message: string;
   created_at: string;
+  updated_at: string | null;
 };
 
 export type Owner = 'yubin' | 'munsung';

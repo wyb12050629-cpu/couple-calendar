@@ -134,6 +134,22 @@ body {
   animation: fade-switch 0.25s ease-out forwards;
 }
 
+/* 슬라이드 다운 (토스트) */
+@keyframes slide-down {
+  from {
+    transform: translateX(-50%) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out forwards;
+}
+
 /* 스크롤바 숨기기 */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

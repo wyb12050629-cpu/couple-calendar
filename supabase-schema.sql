@@ -23,8 +23,12 @@ create table gratitude (
   from_user text not null check (from_user in ('yubin', 'munsung')),
   to_user text not null check (to_user in ('yubin', 'munsung')),
   message text not null,
-  created_at timestamp default now()
+  created_at timestamp default now(),
+  updated_at timestamp
 );
+
+-- 기존 테이블에 컬럼 추가 (마이그레이션용)
+-- alter table gratitude add column updated_at timestamp;
 
 -- 푸시 알림 구독 테이블
 create table push_subscriptions (

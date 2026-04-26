@@ -18,6 +18,7 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
 
   const toUser = user === 'yubin' ? 'munsung' : 'yubin';
   const toName = toUser === 'yubin' ? '유빈' : '문성';
+  const fromName = user === 'yubin' ? '유빈' : '문성';
 
   // Body scroll lock
   useEffect(() => {
@@ -39,11 +40,22 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
     if (!message.trim() || !user) return;
     setSaving(true);
 
-    await supabase.from('gratitude').insert({
+    const { data, error } = await supabase.from('gratitude').insert({
       from_user: user,
       to_user: toUser,
       message: message.trim(),
-    });
+    }).select().single();
+
+    if (error) {
+      console.error('Failed to save gratitude:', error);
+      setSaving(false);
+      return;
+    }
+
+    // Trigger push notification (fire-and-forget)
+    if (data) {
+      triggerPushNotification(toUser, fromName).catch(console.error);
+    }
 
     setShowHearts(true);
     setTimeout(() => {
@@ -80,7 +92,7 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
 
         {/* 헤더 - 고정 */}
         <div className="flex items-center justify-between px-6 pt-6 pb-3 flex-shrink-0">
-          <h3 className="font-header font-bold text-xl text-ink">감사한 순간 기록하기</h3>
+          <h3 className="font-bold text-xl text-ink">감사한 순간 기록하기</h3>
           <button onClick={onClose} className="p-2 text-ink/40 hover:bg-line/50 rounded-lg">
             <X size={18} />
           </button>
@@ -88,7 +100,7 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
 
         {/* 본문 - 스크롤 가능 */}
         <div className="flex-1 overflow-y-auto no-scrollbar px-6">
-          <p className="text-sm text-ink/40 mb-4 font-handwriting text-base">
+          <p className="text-sm text-caption mb-4">
             {toName}에게 전하는 마음 💌
           </p>
 
@@ -100,7 +112,7 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
               rows={4}
               className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none resize-none focus:ring-2 focus:ring-shared/30 text-ink placeholder:text-ink/30"
             />
-            <span className="absolute bottom-3 right-3 text-[10px] text-ink/30">
+            <span className="absolute bottom-3 right-3 text-[10px] text-caption/50">
               {message.length}/200
             </span>
           </div>
@@ -119,4 +131,27 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
       </div>
     </div>
   );
+}
+
+async function triggerPushNotification(toUser: string, fromName: string) {
+  try {
+    // Get push subscriptions for the recipient
+    const { data: subs } = await supabase
+      .from('push_subscriptions')
+      .select('subscription')
+      .eq('user_name', toUser);
+
+    if (!subs || subs.length === 0) return;
+
+    // Try to call edge function if available
+    await supabase.functions.invoke('send-gratitude-push', {
+      body: {
+        to_user: toUser,
+        from_name: fromName,
+      },
+    });
+  } catch (e) {
+    // Push failure should not block the UX
+    console.error('Push notification failed:', e);
+  }
 }
