@@ -11,8 +11,10 @@ export type Event = {
   id: string;
   title: string;
   date: string;
+  end_date: string | null;
   start_time: string | null;
   end_time: string | null;
+  all_day: boolean;
   memo: string | null;
   owner: 'yubin' | 'munsung' | 'shared';
   image_url: string | null;

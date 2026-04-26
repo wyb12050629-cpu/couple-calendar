@@ -3,13 +3,19 @@ create table events (
   id uuid default gen_random_uuid() primary key,
   title text not null,
   date date not null,
+  end_date date,
   start_time time,
   end_time time,
+  all_day boolean default false,
   memo text,
   owner text not null check (owner in ('yubin', 'munsung', 'shared')),
   image_url text,
   created_at timestamp default now()
 );
+
+-- 기존 테이블에 컬럼 추가 (마이그레이션용)
+-- alter table events add column end_date date;
+-- alter table events add column all_day boolean default false;
 
 -- 칭찬/감사 보관함 테이블
 create table gratitude (

@@ -68,7 +68,12 @@ export default function EventList({ date, filterOwner }: Props) {
                   {ownerLabels[ev.owner]}
                 </span>
                 <h4 className="font-bold text-sm mt-1.5 text-ink">{ev.title}</h4>
-                {ev.start_time && (
+                {ev.all_day ? (
+                  <div className="flex items-center gap-1 mt-1 text-xs text-ink/40">
+                    <Clock size={12} />
+                    <span>하루 종일{ev.end_date ? ` (${ev.date} ~ ${ev.end_date})` : ''}</span>
+                  </div>
+                ) : ev.start_time ? (
                   <div className="flex items-center gap-1 mt-1 text-xs text-ink/40">
                     <Clock size={12} />
                     <span>
@@ -76,7 +81,7 @@ export default function EventList({ date, filterOwner }: Props) {
                       {ev.end_time ? ` ~ ${ev.end_time.slice(0, 5)}` : ''}
                     </span>
                   </div>
-                )}
+                ) : null}
                 {ev.memo && (
                   <p className="text-xs text-ink/40 mt-1 line-clamp-2">{ev.memo}</p>
                 )}
