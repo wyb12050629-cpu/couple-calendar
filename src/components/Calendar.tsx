@@ -61,7 +61,7 @@ export default function Calendar({ onDateClick, filterOwner, selectedDate }: Pro
   }, [fetchEvents, fetchGratitudes]);
 
   const days = getCalendarDays(year, month);
-  const weekDays = ['일', '월', '화', '수', '목', '��', '토'];
+  const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
 
   const prevMonth = () => {
     if (month === 0) { setYear(y => y - 1); setMonth(11); }
@@ -101,7 +101,7 @@ export default function Calendar({ onDateClick, filterOwner, selectedDate }: Pro
         </button>
       </div>
 
-      {/* 요일 헤��� */}
+      {/* 요일 헤더 */}
       <div className="grid grid-cols-7 mb-2 border-b border-dashed border-line pb-2">
         {weekDays.map((d, i) => (
           <div key={d} className={`text-center text-xs font-medium py-1 ${

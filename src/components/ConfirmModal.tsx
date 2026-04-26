@@ -10,7 +10,7 @@ type Props = {
   onCancel: () => void;
 };
 
-export default function ConfirmModal({ title, message, confirmLabel = '��제하기', onConfirm, onCancel }: Props) {
+export default function ConfirmModal({ title, message, confirmLabel = '삭제하기', onConfirm, onCancel }: Props) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };

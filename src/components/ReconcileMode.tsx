@@ -92,7 +92,7 @@ export default function ReconcileMode({ onClose }: Props) {
       {closing && (
         <div className="absolute inset-0 flex items-center justify-center bg-paper/80 z-20">
           <p className="text-3xl font-bold text-shared animate-fade-in">
-            오늘도 사랑해요 ���
+            오늘도 사랑해요 💕
           </p>
         </div>
       )}

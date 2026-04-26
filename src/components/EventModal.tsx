@@ -121,7 +121,7 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
     <div className="fixed inset-0 bg-ink/40 z-50 flex items-end justify-center" onClick={onClose}>
       <div
         className="bg-paper w-full max-w-[430px] rounded-t-2xl animate-slide-up border-t border-line flex flex-col"
-        style={{ maxHeight: 'calc(100dvh - 60px)' }}
+        style={{ maxHeight: '90dvh' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* 헤더 - 고정 */}

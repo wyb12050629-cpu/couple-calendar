@@ -67,8 +67,8 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
   return (
     <div className="fixed inset-0 bg-ink/40 z-50 flex items-end justify-center" onClick={onClose}>
       <div
-        className="bg-paper w-full max-w-[430px] rounded-t-2xl animate-slide-up relative overflow-hidden border-t border-line flex flex-col"
-        style={{ maxHeight: 'calc(100dvh - 60px)' }}
+        className="bg-paper w-full max-w-[430px] rounded-t-2xl animate-slide-up relative border-t border-line flex flex-col"
+        style={{ maxHeight: '90dvh' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* 하트 파티클 */}

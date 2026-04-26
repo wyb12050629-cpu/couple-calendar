@@ -89,7 +89,7 @@ export default function GratitudePage() {
       {/* 헤더 */}
       <div className="px-4 pt-4 pb-2">
         <h1 className="text-xl font-bold text-shared mb-1">
-          우리가 쌓은 따뜻한 순간��� 🫶
+          우리가 쌓은 따뜻한 순간들 🫶
         </h1>
       </div>
 
@@ -137,13 +137,13 @@ export default function GratitudePage() {
           </div>
         ) : messages.length === 0 ? (
           <div className="text-center text-caption/60 py-8">
-            <p className="text-3xl mb-3">��</p>
+            <p className="text-3xl mb-3">💌</p>
             <p className="text-sm mb-1">첫 감사 메시지를 적어볼까요?</p>
             <button
               onClick={() => setShowWrite(true)}
               className="inline-flex items-center gap-1 mt-2 text-xs font-medium text-shared hover:text-shared/80 transition-colors"
             >
-              <Plus size={14} /> 새로운 감사 ��기
+              <Plus size={14} /> 새로운 감사 적기
             </button>
           </div>
         ) : (
