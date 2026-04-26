@@ -24,12 +24,16 @@ export default function BottomNav() {
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex flex-col items-center gap-1 px-3 py-1 rounded-lg transition-colors ${
-                isActive ? 'text-shared' : 'text-ink/40'
+              className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-colors ${
+                isActive ? 'text-ink' : 'text-[#A89B8C]'
               }`}
             >
+              {/* 활성 점 표시 */}
+              <span className={`w-1 h-1 rounded-full mb-0.5 transition-colors ${
+                isActive ? 'bg-yubin' : 'bg-transparent'
+              }`} />
               <Icon size={22} strokeWidth={isActive ? 2.5 : 1.5} />
-              <span className="text-[10px] font-semibold">{tab.label}</span>
+              <span className={`text-[10px] ${isActive ? 'font-semibold' : 'font-normal'}`}>{tab.label}</span>
             </Link>
           );
         })}

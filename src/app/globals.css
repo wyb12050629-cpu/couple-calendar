@@ -4,14 +4,15 @@
 
 :root {
   --background: #F5EFE6;
-  --foreground: #4A3F35;
+  --foreground: #3A2F25;
   --paper: #FAF6EE;
-  --ink: #4A3F35;
-  --yubin: #C97B7B;
-  --munsung: #7B95A8;
+  --ink: #3A2F25;
+  --yubin: #B85F5F;
+  --munsung: #5F7B95;
   --shared: #9B8AA8;
   --accent: #D4A574;
   --line: #E8DDC9;
+  --caption: #6B5D50;
 }
 
 body {
@@ -22,8 +23,8 @@ body {
     rgba(232, 221, 201, 0.5) 31px,
     rgba(232, 221, 201, 0.5) 32px
   );
-  color: #4A3F35;
-  font-family: "Gowun Dodum", sans-serif;
+  color: #3A2F25;
+  font-family: "Pretendard", sans-serif;
   max-width: 430px;
   margin: 0 auto;
   min-height: 100dvh;
@@ -121,6 +122,16 @@ body {
 
 .animate-scale-in {
   animation: scale-in 0.3s ease-out forwards;
+}
+
+/* 탭 전환 페이드 */
+@keyframes fade-switch {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-switch {
+  animation: fade-switch 0.25s ease-out forwards;
 }
 
 /* 스크롤바 숨기기 */

@@ -91,8 +91,8 @@ export default function ReconcileMode({ onClose }: Props) {
       {/* 종료 메시지 */}
       {closing && (
         <div className="absolute inset-0 flex items-center justify-center bg-paper/80 z-20">
-          <p className="text-3xl font-header text-shared animate-fade-in">
-            오늘도 사랑해요 💕
+          <p className="text-3xl font-bold text-shared animate-fade-in">
+            오늘도 사랑해요 ���
           </p>
         </div>
       )}
@@ -105,17 +105,17 @@ export default function ReconcileMode({ onClose }: Props) {
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <p className="text-xs text-ink/40 mb-1 font-handwriting text-base">
+            <p className="text-sm font-normal text-caption/70 mb-1">
               {userNames[current.from_user]} → {userNames[current.to_user]}
             </p>
-            <p className="text-[10px] text-ink/30 mb-4">
+            <p className="text-[10px] font-normal text-caption/50 mb-4">
               {new Date(current.created_at).toLocaleDateString('ko-KR', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
               })}
             </p>
-            <p className="text-lg leading-relaxed text-ink/70 font-medium">
+            <p className="text-lg leading-relaxed text-ink font-medium">
               {current.message}
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function ReconcileMode({ onClose }: Props) {
           {currentIdx < messages.length - 1 && (
             <button
               onClick={handleNext}
-              className="flex items-center gap-1 mx-auto mt-4 text-sm text-ink/50 hover:text-shared transition-colors"
+              className="flex items-center gap-1 mx-auto mt-4 text-sm font-medium text-caption hover:text-shared transition-colors"
             >
               다음 메시지 보기 <ChevronRight size={16} />
             </button>
@@ -145,9 +145,9 @@ export default function ReconcileMode({ onClose }: Props) {
       )}
 
       {messages.length === 0 && !closing && (
-        <div className="text-center text-ink/50 px-6">
+        <div className="text-center text-caption px-6">
           <p className="text-lg font-medium mb-2">아직 감사 메시지가 없어요</p>
-          <p className="text-sm">먼저 감사한 순간을 기록해보세요! 💕</p>
+          <p className="text-sm font-normal">먼저 감사한 순간을 기록해보세요! 💕</p>
         </div>
       )}
     </div>

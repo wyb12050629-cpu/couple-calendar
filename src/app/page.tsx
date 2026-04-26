@@ -19,7 +19,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
-        <div className="text-shared font-header text-2xl animate-pulse">Loading...</div>
+        <div className="text-shared font-bold text-2xl animate-pulse">Loading...</div>
       </div>
     );
   }
@@ -35,22 +35,30 @@ export default function Home() {
       <Calendar
         key={refreshKey}
         onDateClick={(date) => setSelectedDate(date)}
+        selectedDate={selectedDate}
       />
 
       {selectedDate && (
-        <div className="px-4 mb-2">
-          <h3 className="font-bold text-sm text-ink/60 mb-2">
+        <div className="px-4 mb-1">
+          <h3 className="font-semibold text-sm text-caption">
             {selectedDate} 일정
           </h3>
         </div>
       )}
-      {selectedDate && <EventList date={selectedDate} key={`list-${selectedDate}-${refreshKey}`} />}
+      {selectedDate && (
+        <EventList
+          date={selectedDate}
+          key={`list-${selectedDate}-${refreshKey}`}
+          onAddClick={() => setShowAddModal(true)}
+        />
+      )}
 
       <button
         onClick={() => setShowAddModal(true)}
-        className="fixed bottom-20 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] w-14 h-14 bg-paper border-2 border-shared text-shared rounded-full shadow-sm flex items-center justify-center hover:bg-shared hover:text-white active:scale-90 transition-all z-40"
+        className="fixed bottom-24 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] w-14 h-14 bg-yubin text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-all z-40"
+        style={{ boxShadow: '0 4px 14px rgba(184, 95, 95, 0.35)' }}
       >
-        <Plus size={24} />
+        <Plus size={24} strokeWidth={2.5} />
       </button>
 
       {showAddModal && (

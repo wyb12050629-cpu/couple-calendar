@@ -8,16 +8,22 @@ export default function DdayBanner() {
   const birthday = isBirthday(today);
 
   return (
-    <div className="px-4 pt-4 space-y-2">
-      <div className="bg-paper border border-line rounded-lg p-4 text-center rotate-[-0.5deg] shadow-sm">
-        <p className="text-xs text-ink/50 mb-1 font-handwriting text-base">유빈 & 문성</p>
-        <p className="text-2xl font-header font-bold text-shared">
-          D+{dday} <span className="text-base">💕</span>
-        </p>
+    <div className="px-4 pt-3 space-y-2">
+      <div className="bg-paper border border-line rounded-lg px-4 py-3 flex items-center gap-3 rotate-[-0.5deg] shadow-sm">
+        {/* 프로필 placeholder */}
+        <div className="w-10 h-10 rounded-full border-2 border-line bg-line/30 flex-shrink-0 flex items-center justify-center">
+          <span className="text-xs text-caption">📷</span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-normal text-caption/70">유빈 & 문성</p>
+          <p className="text-2xl font-bold text-yubin leading-tight">
+            D+{dday} <span className="text-sm font-normal text-caption/50">💕</span>
+          </p>
+        </div>
       </div>
       {birthday && (
-        <div className="bg-paper border border-line rounded-lg p-3 text-center animate-fade-in rotate-[0.5deg] shadow-sm">
-          <p className="text-lg font-header font-bold text-ink">
+        <div className="bg-paper border border-line rounded-lg px-4 py-2.5 text-center animate-fade-in rotate-[0.5deg] shadow-sm">
+          <p className="text-base font-bold text-ink">
             {birthday.emoji} {birthday.who} 생일 축하해! {birthday.emoji}
           </p>
         </div>
