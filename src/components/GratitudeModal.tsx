@@ -65,10 +65,10 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 bg-ink/40 z-50 flex items-end justify-center" onClick={onClose}>
+    <div className="fixed inset-0 bg-ink/40 z-[55] flex items-end justify-center" onClick={onClose}>
       <div
         className="bg-paper w-full max-w-[430px] rounded-t-2xl animate-slide-up relative border-t border-line flex flex-col"
-        style={{ maxHeight: '90dvh' }}
+        style={{ maxHeight: 'calc(100dvh - 40px)' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* 하트 파티클 */}
@@ -99,7 +99,7 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
         </div>
 
         {/* 본문 - 스크롤 가능 */}
-        <div className="flex-1 overflow-y-auto no-scrollbar px-6">
+        <div className="flex-1 min-h-0 overflow-y-auto px-6" style={{ WebkitOverflowScrolling: 'touch' }}>
           <p className="text-sm text-caption mb-4">
             {toName}에게 전하는 마음 💌
           </p>
