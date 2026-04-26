@@ -20,13 +20,11 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
   const toName = toUser === 'yubin' ? '유빈' : '문성';
   const fromName = user === 'yubin' ? '유빈' : '문성';
 
-  // Body scroll lock
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = 'auto'; };
   }, []);
 
-  // ESC key to close
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose();
   }, [onClose]);
@@ -52,7 +50,6 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
       return;
     }
 
-    // Trigger push notification (fire-and-forget)
     if (data) {
       triggerPushNotification(toUser, fromName).catch(console.error);
     }
@@ -90,43 +87,39 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
           </div>
         )}
 
-        {/* 헤더 - 고정 */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-3 flex-shrink-0">
-          <h3 className="font-bold text-xl text-ink">감사한 순간 기록하기</h3>
-          <button onClick={onClose} className="p-2 text-ink/40 hover:bg-line/50 rounded-lg">
-            <X size={18} />
+        {/* 헤더: [X 취소]  제목  [기록하기] */}
+        <div className="flex items-center justify-between px-4 pt-5 pb-3 flex-shrink-0 border-b border-line">
+          <button onClick={onClose} className="p-2 text-ink/50 hover:bg-line/50 rounded-lg">
+            <X size={20} />
+          </button>
+          <h3 className="font-bold text-base text-ink">감사한 순간</h3>
+          <button
+            onClick={handleSave}
+            disabled={!message.trim() || saving}
+            className="px-4 py-1.5 bg-shared text-white rounded-lg text-sm font-semibold disabled:opacity-40 active:scale-[0.97] transition-all"
+          >
+            {saving ? '저장 중' : '기록하기'}
           </button>
         </div>
 
-        {/* 본문 - 스크롤 가능 */}
-        <div className="flex-1 min-h-0 overflow-y-auto px-6" style={{ WebkitOverflowScrolling: 'touch' }}>
+        {/* 본문 - 스크롤 */}
+        <div className="flex-1 min-h-0 overflow-y-auto px-6 py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
           <p className="text-sm text-caption mb-4">
             {toName}에게 전하는 마음 💌
           </p>
 
-          <div className="relative mb-4">
+          <div className="relative">
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value.slice(0, 200))}
               placeholder="어제 2시간 달려와 줘서 고마워 💕"
-              rows={4}
+              rows={6}
               className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none resize-none focus:ring-2 focus:ring-shared/30 text-ink placeholder:text-ink/30"
             />
             <span className="absolute bottom-3 right-3 text-[10px] text-caption/50">
               {message.length}/200
             </span>
           </div>
-        </div>
-
-        {/* 푸터 - 고정 */}
-        <div className="flex-shrink-0 px-6 pt-3 pb-6" style={{ paddingBottom: 'max(24px, env(safe-area-inset-bottom))' }}>
-          <button
-            onClick={handleSave}
-            disabled={!message.trim() || saving}
-            className="w-full py-3.5 bg-paper border-2 border-shared text-shared rounded-lg font-bold text-sm disabled:opacity-50 active:scale-[0.98] transition-all hover:bg-shared hover:text-white"
-          >
-            {saving ? '저장 중... 💕' : '마음 전하기'}
-          </button>
         </div>
       </div>
     </div>
@@ -135,7 +128,6 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
 
 async function triggerPushNotification(toUser: string, fromName: string) {
   try {
-    // Get push subscriptions for the recipient
     const { data: subs } = await supabase
       .from('push_subscriptions')
       .select('subscription')
@@ -143,7 +135,6 @@ async function triggerPushNotification(toUser: string, fromName: string) {
 
     if (!subs || subs.length === 0) return;
 
-    // Try to call edge function if available
     await supabase.functions.invoke('send-gratitude-push', {
       body: {
         to_user: toUser,
@@ -151,7 +142,6 @@ async function triggerPushNotification(toUser: string, fromName: string) {
       },
     });
   } catch (e) {
-    // Push failure should not block the UX
     console.error('Push notification failed:', e);
   }
 }

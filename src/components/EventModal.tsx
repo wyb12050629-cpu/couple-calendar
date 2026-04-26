@@ -26,13 +26,11 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
   const [imagePreview, setImagePreview] = useState<string | null>(event?.image_url || null);
   const [saving, setSaving] = useState(false);
 
-  // Body scroll lock
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = 'auto'; };
   }, []);
 
-  // ESC key to close
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose();
   }, [onClose]);
@@ -53,13 +51,11 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
   const handleSave = async () => {
     if (!title.trim()) return;
 
-    // 검증: 종료 날짜가 시작 날짜보다 이전인지
     if (endDate < startDate) {
       alert('종료 날짜가 시작 날짜보다 빠를 수 없어요.');
       return;
     }
 
-    // 검증: 같은 날이고 시간이 있으면 종료시간 체크
     if (!allDay && startDate === endDate && startTime && endTime && endTime < startTime) {
       alert('종료 시간이 시작 시간보다 빠를 수 없어요.');
       return;
@@ -124,23 +120,30 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
         style={{ maxHeight: 'calc(100dvh - 40px)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 헤더 - 고정 */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-3 flex-shrink-0">
-          <h3 className="font-header font-bold text-xl text-ink">{event ? '일정 수정' : '새 일정'}</h3>
-          <div className="flex gap-2">
+        {/* 헤더: [X 취소]  제목  [삭제] [저장하기] */}
+        <div className="flex items-center justify-between px-4 pt-5 pb-3 flex-shrink-0 border-b border-line">
+          <button onClick={onClose} className="p-2 text-ink/50 hover:bg-line/50 rounded-lg">
+            <X size={20} />
+          </button>
+          <h3 className="font-bold text-base text-ink">{event ? '일정 수정' : '새 일정'}</h3>
+          <div className="flex items-center gap-1">
             {event && (
               <button onClick={handleDelete} className="p-2 text-yubin hover:bg-yubin/10 rounded-lg">
-                <Trash2 size={18} />
+                <Trash2 size={16} />
               </button>
             )}
-            <button onClick={onClose} className="p-2 text-ink/40 hover:bg-line/50 rounded-lg">
-              <X size={18} />
+            <button
+              onClick={handleSave}
+              disabled={!title.trim() || saving}
+              className="px-4 py-1.5 bg-shared text-white rounded-lg text-sm font-semibold disabled:opacity-40 active:scale-[0.97] transition-all"
+            >
+              {saving ? '저장 중' : event ? '수정' : '저장'}
             </button>
           </div>
         </div>
 
-        {/* 본문 - 스크롤 가능 */}
-        <div className="flex-1 min-h-0 overflow-y-auto px-6" style={{ WebkitOverflowScrolling: 'touch' }}>
+        {/* 본문 - 스크롤 */}
+        <div className="flex-1 min-h-0 overflow-y-auto px-6 py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
           {/* 소유자 선택 */}
           <div className="flex gap-2 mb-4">
             {ownerOptions.map((opt) => (
@@ -259,17 +262,6 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
               </div>
             )}
           </div>
-        </div>
-
-        {/* 푸터 - 고정 */}
-        <div className="flex-shrink-0 px-6 pt-3 pb-6" style={{ paddingBottom: 'max(24px, env(safe-area-inset-bottom))' }}>
-          <button
-            onClick={handleSave}
-            disabled={!title.trim() || saving}
-            className="w-full py-3.5 bg-paper border-2 border-shared text-shared rounded-lg font-bold text-sm disabled:opacity-50 active:scale-[0.98] transition-all hover:bg-shared hover:text-white"
-          >
-            {saving ? '저장 중...' : event ? '수정하기' : '저장하기'}
-          </button>
         </div>
       </div>
     </div>
