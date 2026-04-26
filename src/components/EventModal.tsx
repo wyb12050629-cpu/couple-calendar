@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { X, Trash2, Image as ImageIcon } from 'lucide-react';
+import { X, Image as ImageIcon } from 'lucide-react';
 import { supabase, type Event } from '@/lib/supabase';
 import { useUser } from '@/context/UserContext';
 
@@ -120,26 +120,19 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
         style={{ maxHeight: 'calc(100dvh - 40px)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 헤더: [X 취소]  제목  [삭제] [저장하기] */}
+        {/* 헤더: [X]  제목  [저장] */}
         <div className="flex items-center justify-between px-4 pt-5 pb-3 flex-shrink-0 border-b border-line">
           <button onClick={onClose} className="p-2 text-ink/50 hover:bg-line/50 rounded-lg">
             <X size={20} />
           </button>
           <h3 className="font-bold text-base text-ink">{event ? '일정 수정' : '새 일정'}</h3>
-          <div className="flex items-center gap-1">
-            {event && (
-              <button onClick={handleDelete} className="p-2 text-yubin hover:bg-yubin/10 rounded-lg">
-                <Trash2 size={16} />
-              </button>
-            )}
-            <button
-              onClick={handleSave}
-              disabled={!title.trim() || saving}
-              className="px-4 py-1.5 bg-shared text-white rounded-lg text-sm font-semibold disabled:opacity-40 active:scale-[0.97] transition-all"
-            >
-              {saving ? '저장 중' : event ? '수정' : '저장'}
-            </button>
-          </div>
+          <button
+            onClick={handleSave}
+            disabled={!title.trim() || saving}
+            className="px-4 py-1.5 bg-shared text-white rounded-lg text-sm font-semibold disabled:opacity-40 active:scale-[0.97] transition-all"
+          >
+            {saving ? '저장 중' : event ? '수정' : '저장'}
+          </button>
         </div>
 
         {/* 본문 - 스크롤 */}
@@ -262,6 +255,16 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
               </div>
             )}
           </div>
+
+          {/* 삭제 버튼 (수정 모드에서만) */}
+          {event && (
+            <button
+              onClick={handleDelete}
+              className="w-full py-2.5 text-sm font-medium text-yubin hover:bg-yubin/10 rounded-lg transition-colors mb-2"
+            >
+              이 일정 삭제하기
+            </button>
+          )}
         </div>
       </div>
     </div>
