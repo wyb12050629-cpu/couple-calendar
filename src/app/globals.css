@@ -15,6 +15,11 @@
   --caption: #6B5D50;
 }
 
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 body {
   background-color: #F5EFE6;
   background-image: repeating-linear-gradient(
@@ -30,6 +35,9 @@ body {
   min-height: 100dvh;
   position: relative;
   line-height: 1.75;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* 파티클 애니메이션 */

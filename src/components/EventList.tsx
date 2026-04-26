@@ -87,7 +87,7 @@ export default function EventList({ date, filterOwner, onAddClick }: Props) {
             )}
           </div>
         ) : (
-          <div className="space-y-2 max-h-[240px] overflow-y-auto no-scrollbar">
+          <div className="space-y-2">
             {events.map((ev) => (
               <button
                 key={ev.id}

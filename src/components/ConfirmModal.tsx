@@ -13,7 +13,7 @@ type Props = {
 export default function ConfirmModal({ title, message, confirmLabel = '삭제하기', onConfirm, onCancel }: Props) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
+    return () => { document.body.style.overflow = 'auto'; };
   }, []);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {

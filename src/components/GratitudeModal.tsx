@@ -23,7 +23,7 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
   // Body scroll lock
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
+    return () => { document.body.style.overflow = 'auto'; };
   }, []);
 
   // ESC key to close
