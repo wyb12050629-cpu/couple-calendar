@@ -47,7 +47,7 @@ export default function EventList({ date, filterOwner }: Props) {
 
   if (events.length === 0) {
     return (
-      <div className="px-4 py-6 text-center text-gray-300 text-sm">
+      <div className="px-4 py-6 text-center text-ink/30 text-sm">
         이 날은 일정이 없어요
       </div>
     );
@@ -60,16 +60,16 @@ export default function EventList({ date, filterOwner }: Props) {
           <button
             key={ev.id}
             onClick={() => setEditEvent(ev)}
-            className={`w-full text-left bg-white rounded-2xl p-4 border-l-4 ${ownerColors[ev.owner]} shadow-sm hover:shadow-md transition-shadow`}
+            className={`w-full text-left bg-paper rounded-lg p-4 border-l-4 ${ownerColors[ev.owner]} border border-line shadow-sm hover:shadow-md transition-shadow`}
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-line/50 text-ink/60">
                   {ownerLabels[ev.owner]}
                 </span>
-                <h4 className="font-bold text-sm mt-1.5">{ev.title}</h4>
+                <h4 className="font-bold text-sm mt-1.5 text-ink">{ev.title}</h4>
                 {ev.start_time && (
-                  <div className="flex items-center gap-1 mt-1 text-xs text-gray-400">
+                  <div className="flex items-center gap-1 mt-1 text-xs text-ink/40">
                     <Clock size={12} />
                     <span>
                       {ev.start_time.slice(0, 5)}
@@ -78,12 +78,12 @@ export default function EventList({ date, filterOwner }: Props) {
                   </div>
                 )}
                 {ev.memo && (
-                  <p className="text-xs text-gray-400 mt-1 line-clamp-2">{ev.memo}</p>
+                  <p className="text-xs text-ink/40 mt-1 line-clamp-2">{ev.memo}</p>
                 )}
               </div>
               {ev.image_url && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={ev.image_url} alt="" className="w-12 h-12 rounded-xl object-cover ml-3" />
+                <img src={ev.image_url} alt="" className="w-12 h-12 rounded-lg object-cover ml-3" />
               )}
             </div>
           </button>

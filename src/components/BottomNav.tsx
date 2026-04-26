@@ -15,7 +15,7 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-pink-100 z-50">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-paper border-t border-line z-50">
       <div className="flex justify-around items-center h-16 px-2">
         {tabs.map((tab) => {
           const isActive = pathname === tab.href;
@@ -24,8 +24,8 @@ export default function BottomNav() {
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex flex-col items-center gap-1 px-3 py-1 rounded-xl transition-colors ${
-                isActive ? 'text-shared' : 'text-gray-400'
+              className={`flex flex-col items-center gap-1 px-3 py-1 rounded-lg transition-colors ${
+                isActive ? 'text-shared' : 'text-ink/40'
               }`}
             >
               <Icon size={22} strokeWidth={isActive ? 2.5 : 1.5} />

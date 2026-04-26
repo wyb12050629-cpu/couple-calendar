@@ -1,16 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Pacifico, Nunito } from "next/font/google";
+import { Gaegu, Nanum_Pen_Script, Gowun_Dodum } from "next/font/google";
 import { UserProvider } from "@/context/UserContext";
 import "./globals.css";
 
-const pacifico = Pacifico({
-  weight: "400",
+const gaegu = Gaegu({
+  weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-header",
   display: "swap",
 });
 
-const nunito = Nunito({
+const nanumPenScript = Nanum_Pen_Script({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-handwriting",
+  display: "swap",
+});
+
+const gowunDodum = Gowun_Dodum({
+  weight: "400",
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -31,7 +39,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#FFF5F8",
+  themeColor: "#F5EFE6",
 };
 
 export default function RootLayout({
@@ -41,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${pacifico.variable} ${nunito.variable} font-body antialiased`}>
+      <body className={`${gaegu.variable} ${nanumPenScript.variable} ${gowunDodum.variable} font-body antialiased`}>
         <UserProvider>
           {children}
         </UserProvider>

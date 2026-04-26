@@ -64,22 +64,22 @@ export default function Calendar({ onDateClick, filterOwner }: Props) {
     <div className="px-4 py-3">
       {/* 월 네비게이션 */}
       <div className="flex items-center justify-between mb-4">
-        <button onClick={prevMonth} className="p-2 rounded-full hover:bg-pink-50 active:bg-pink-100 transition-colors">
-          <ChevronLeft size={20} />
+        <button onClick={prevMonth} className="p-2 rounded-lg hover:bg-line/50 active:bg-line transition-colors">
+          <ChevronLeft size={20} className="text-ink/60" />
         </button>
-        <h2 className="font-header text-xl text-shared">
+        <h2 className="font-header text-xl text-shared font-bold">
           {year}년 {MONTH_NAMES[month]}
         </h2>
-        <button onClick={nextMonth} className="p-2 rounded-full hover:bg-pink-50 active:bg-pink-100 transition-colors">
-          <ChevronRight size={20} />
+        <button onClick={nextMonth} className="p-2 rounded-lg hover:bg-line/50 active:bg-line transition-colors">
+          <ChevronRight size={20} className="text-ink/60" />
         </button>
       </div>
 
       {/* 요일 헤더 */}
-      <div className="grid grid-cols-7 mb-2">
+      <div className="grid grid-cols-7 mb-2 border-b border-dashed border-line pb-2">
         {weekDays.map((d, i) => (
           <div key={d} className={`text-center text-xs font-semibold py-1 ${
-            i === 0 ? 'text-red-400' : i === 6 ? 'text-blue-400' : 'text-gray-400'
+            i === 0 ? 'text-yubin' : i === 6 ? 'text-munsung' : 'text-ink/40'
           }`}>
             {d}
           </div>
@@ -103,14 +103,14 @@ export default function Calendar({ onDateClick, filterOwner }: Props) {
             <button
               key={dateStr}
               onClick={() => onDateClick(dateStr)}
-              className={`relative flex flex-col items-center py-1.5 rounded-xl transition-all active:scale-95 ${
-                isToday ? 'bg-shared/10 ring-2 ring-shared/30' : 'hover:bg-pink-50'
+              className={`relative flex flex-col items-center py-1.5 rounded-lg transition-all active:scale-95 ${
+                isToday ? '' : 'hover:bg-line/30'
               }`}
             >
-              <span className={`text-sm font-medium ${
-                isToday ? 'text-shared font-bold' :
-                dayOfWeek === 0 ? 'text-red-400' :
-                dayOfWeek === 6 ? 'text-blue-400' : 'text-gray-700'
+              <span className={`text-sm w-7 h-7 flex items-center justify-center ${
+                isToday ? 'border-2 border-shared rounded-full text-shared font-bold' :
+                dayOfWeek === 0 ? 'text-yubin' :
+                dayOfWeek === 6 ? 'text-munsung' : 'text-ink/70'
               }`}>
                 {day}
               </span>
@@ -128,8 +128,8 @@ export default function Calendar({ onDateClick, filterOwner }: Props) {
                       className="w-1.5 h-1.5 rounded-full"
                       style={{
                         backgroundColor:
-                          ev.owner === 'yubin' ? '#FF6B8A' :
-                          ev.owner === 'munsung' ? '#6B9EFF' : '#B06BFF',
+                          ev.owner === 'yubin' ? '#C97B7B' :
+                          ev.owner === 'munsung' ? '#7B95A8' : '#9B8AA8',
                       }}
                     />
                   ))}

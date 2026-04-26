@@ -47,7 +47,7 @@ export default function GratitudePage() {
     <div className="pb-20">
       {/* 헤더 */}
       <div className="px-4 pt-4 pb-2">
-        <h1 className="font-header text-xl text-shared mb-1">
+        <h1 className="font-header text-xl font-bold text-shared mb-1">
           우리가 쌓은 따뜻한 순간들 🫶
         </h1>
       </div>
@@ -56,7 +56,7 @@ export default function GratitudePage() {
       <div className="px-4 mb-4">
         <button
           onClick={() => setShowReconcile(true)}
-          className="w-full py-3 bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl text-sm font-bold text-shared flex items-center justify-center gap-2 hover:from-pink-200 hover:to-purple-200 transition-all active:scale-[0.98]"
+          className="w-full py-3 bg-paper border border-line rounded-lg text-sm font-bold text-shared flex items-center justify-center gap-2 hover:bg-line/30 transition-all active:scale-[0.98]"
         >
           <Bird size={18} />
           화해 모드 켜기 🕊️
@@ -69,10 +69,10 @@ export default function GratitudePage() {
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`flex-1 py-2.5 rounded-2xl text-sm font-bold transition-all ${
+            className={`flex-1 py-2.5 rounded-lg text-sm font-bold transition-all border ${
               tab === t.key
-                ? 'bg-shared text-white shadow-md'
-                : 'bg-gray-100 text-gray-400'
+                ? 'bg-shared text-white border-shared shadow-sm'
+                : 'bg-paper text-ink/40 border-line hover:border-ink/20'
             }`}
           >
             {t.label}
@@ -83,7 +83,7 @@ export default function GratitudePage() {
       {/* 메시지 리스트 */}
       <div className="px-4 space-y-3 pb-4">
         {messages.length === 0 ? (
-          <div className="text-center text-gray-300 py-12 text-sm">
+          <div className="text-center text-ink/30 py-12 text-sm">
             아직 메시지가 없어요<br />첫 감사를 전해보세요! 💌
           </div>
         ) : (
@@ -94,7 +94,7 @@ export default function GratitudePage() {
       {/* 작성 버튼 */}
       <button
         onClick={() => setShowWrite(true)}
-        className="fixed bottom-20 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] h-14 px-5 bg-shared text-white rounded-full shadow-lg flex items-center justify-center gap-2 hover:shadow-xl active:scale-90 transition-all z-40 text-sm font-bold"
+        className="fixed bottom-20 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] h-14 px-5 bg-paper border-2 border-shared text-shared rounded-full shadow-sm flex items-center justify-center gap-2 hover:bg-shared hover:text-white active:scale-90 transition-all z-40 text-sm font-bold"
       >
         <Plus size={18} />
         감사한 순간 기록하기

@@ -37,9 +37,9 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-end justify-center" onClick={onClose}>
+    <div className="fixed inset-0 bg-ink/40 z-50 flex items-end justify-center" onClick={onClose}>
       <div
-        className="bg-white w-full max-w-[430px] rounded-t-3xl p-6 animate-slide-up relative overflow-hidden"
+        className="bg-paper w-full max-w-[430px] rounded-t-2xl p-6 animate-slide-up relative overflow-hidden border-t border-line"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 하트 파티클 */}
@@ -62,13 +62,13 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
         )}
 
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-lg">감사한 순간 기록하기</h3>
-          <button onClick={onClose} className="p-2 text-gray-400 hover:bg-gray-50 rounded-full">
+          <h3 className="font-header font-bold text-xl text-ink">감사한 순간 기록하기</h3>
+          <button onClick={onClose} className="p-2 text-ink/40 hover:bg-line/50 rounded-lg">
             <X size={18} />
           </button>
         </div>
 
-        <p className="text-sm text-gray-400 mb-4">
+        <p className="text-sm text-ink/40 mb-4 font-handwriting text-base">
           {toName}에게 전하는 마음 💌
         </p>
 
@@ -78,9 +78,9 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
             onChange={(e) => setMessage(e.target.value.slice(0, 200))}
             placeholder="어제 2시간 달려와 줘서 고마워 💕"
             rows={4}
-            className="w-full px-4 py-3 bg-gray-50 rounded-2xl text-sm outline-none resize-none focus:ring-2 focus:ring-shared/30"
+            className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none resize-none focus:ring-2 focus:ring-shared/30 text-ink placeholder:text-ink/30"
           />
-          <span className="absolute bottom-3 right-3 text-[10px] text-gray-300">
+          <span className="absolute bottom-3 right-3 text-[10px] text-ink/30">
             {message.length}/200
           </span>
         </div>
@@ -88,7 +88,7 @@ export default function GratitudeModal({ onClose, onSaved }: Props) {
         <button
           onClick={handleSave}
           disabled={!message.trim() || saving}
-          className="w-full py-3.5 bg-shared text-white rounded-2xl font-bold text-sm disabled:opacity-50 active:scale-[0.98] transition-transform"
+          className="w-full py-3.5 bg-paper border-2 border-shared text-shared rounded-lg font-bold text-sm disabled:opacity-50 active:scale-[0.98] transition-all hover:bg-shared hover:text-white"
         >
           {saving ? '저장 중... 💕' : '마음 전하기'}
         </button>

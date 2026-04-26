@@ -18,7 +18,7 @@ export default function SharedPage() {
   return (
     <div className="pb-20">
       <div className="px-4 pt-4">
-        <h1 className="font-header text-2xl text-shared">우리의 공동 일정 💜</h1>
+        <h1 className="font-header text-2xl font-bold text-shared">우리의 공동 일정 💜</h1>
       </div>
 
       <Calendar
@@ -29,7 +29,7 @@ export default function SharedPage() {
 
       {selectedDate && (
         <div className="px-4 mb-2">
-          <h3 className="font-bold text-sm text-gray-600 mb-2">{selectedDate}</h3>
+          <h3 className="font-bold text-sm text-ink/60 mb-2">{selectedDate}</h3>
         </div>
       )}
       {selectedDate && (
@@ -42,7 +42,7 @@ export default function SharedPage() {
 
       <button
         onClick={() => setShowAddModal(true)}
-        className="fixed bottom-20 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] w-14 h-14 bg-shared text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl active:scale-90 transition-all z-40"
+        className="fixed bottom-20 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] w-14 h-14 bg-paper border-2 border-shared text-shared rounded-full shadow-sm flex items-center justify-center hover:bg-shared hover:text-white active:scale-90 transition-all z-40"
       >
         <Plus size={24} />
       </button>

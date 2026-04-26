@@ -60,7 +60,8 @@ export default function ReconcileMode({ onClose }: Props) {
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center"
       style={{
-        background: 'linear-gradient(135deg, #FFD6E7, #E8D6FF)',
+        backgroundColor: '#F5EFE6',
+        backgroundImage: 'repeating-linear-gradient(transparent, transparent 31px, rgba(232, 221, 201, 0.5) 31px, rgba(232, 221, 201, 0.5) 32px)',
       }}
     >
       {/* 배경 파티클 */}
@@ -82,15 +83,15 @@ export default function ReconcileMode({ onClose }: Props) {
       {/* 닫기 */}
       <button
         onClick={handleClose}
-        className="absolute top-6 right-6 p-2 bg-white/50 rounded-full text-gray-600 hover:bg-white/80 transition-colors z-10"
+        className="absolute top-6 right-6 p-2 bg-paper/80 border border-line rounded-lg text-ink/60 hover:bg-paper transition-colors z-10"
       >
         <X size={20} />
       </button>
 
       {/* 종료 메시지 */}
       {closing && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-pink-200/80 to-purple-200/80 z-20">
-          <p className="text-2xl font-header text-shared animate-fade-in">
+        <div className="absolute inset-0 flex items-center justify-center bg-paper/80 z-20">
+          <p className="text-3xl font-header text-shared animate-fade-in">
             오늘도 사랑해요 💕
           </p>
         </div>
@@ -100,21 +101,21 @@ export default function ReconcileMode({ onClose }: Props) {
       {current && !closing && (
         <div className="px-6 w-full max-w-[400px]">
           <div
-            className={`bg-white rounded-3xl p-8 shadow-xl transition-all duration-700 ease-in-out ${
+            className={`bg-paper border border-line rounded-lg p-8 shadow-md transition-all duration-700 ease-in-out rotate-[-0.5deg] ${
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <p className="text-xs text-gray-400 mb-1">
+            <p className="text-xs text-ink/40 mb-1 font-handwriting text-base">
               {userNames[current.from_user]} → {userNames[current.to_user]}
             </p>
-            <p className="text-[10px] text-gray-300 mb-4">
+            <p className="text-[10px] text-ink/30 mb-4">
               {new Date(current.created_at).toLocaleDateString('ko-KR', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
               })}
             </p>
-            <p className="text-lg leading-relaxed text-gray-700 font-medium">
+            <p className="text-lg leading-relaxed text-ink/70 font-medium">
               {current.message}
             </p>
           </div>
@@ -125,7 +126,7 @@ export default function ReconcileMode({ onClose }: Props) {
               <div
                 key={i}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  i === currentIdx ? 'bg-white w-6' : 'bg-white/40'
+                  i === currentIdx ? 'bg-shared w-6' : 'bg-line'
                 }`}
               />
             ))}
@@ -135,7 +136,7 @@ export default function ReconcileMode({ onClose }: Props) {
           {currentIdx < messages.length - 1 && (
             <button
               onClick={handleNext}
-              className="flex items-center gap-1 mx-auto mt-4 text-sm text-white/80 hover:text-white transition-colors"
+              className="flex items-center gap-1 mx-auto mt-4 text-sm text-ink/50 hover:text-shared transition-colors"
             >
               다음 메시지 보기 <ChevronRight size={16} />
             </button>
@@ -144,7 +145,7 @@ export default function ReconcileMode({ onClose }: Props) {
       )}
 
       {messages.length === 0 && !closing && (
-        <div className="text-center text-white/80 px-6">
+        <div className="text-center text-ink/50 px-6">
           <p className="text-lg font-medium mb-2">아직 감사 메시지가 없어요</p>
           <p className="text-sm">먼저 감사한 순간을 기록해보세요! 💕</p>
         </div>

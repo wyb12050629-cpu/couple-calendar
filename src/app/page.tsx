@@ -39,7 +39,7 @@ export default function Home() {
 
       {selectedDate && (
         <div className="px-4 mb-2">
-          <h3 className="font-bold text-sm text-gray-600 mb-2">
+          <h3 className="font-bold text-sm text-ink/60 mb-2">
             {selectedDate} 일정
           </h3>
         </div>
@@ -48,7 +48,7 @@ export default function Home() {
 
       <button
         onClick={() => setShowAddModal(true)}
-        className="fixed bottom-20 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] w-14 h-14 bg-shared text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl active:scale-90 transition-all z-40"
+        className="fixed bottom-20 right-4 md:right-auto md:left-1/2 md:translate-x-[170px] w-14 h-14 bg-paper border-2 border-shared text-shared rounded-full shadow-sm flex items-center justify-center hover:bg-shared hover:text-white active:scale-90 transition-all z-40"
       >
         <Plus size={24} />
       </button>

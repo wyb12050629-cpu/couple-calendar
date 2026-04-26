@@ -84,28 +84,28 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-end justify-center" onClick={onClose}>
+    <div className="fixed inset-0 bg-ink/40 z-50 flex items-end justify-center" onClick={onClose}>
       <div
-        className="bg-white w-full max-w-[430px] rounded-t-3xl p-6 animate-slide-up max-h-[85dvh] overflow-y-auto no-scrollbar"
+        className="bg-paper w-full max-w-[430px] rounded-t-2xl p-6 animate-slide-up max-h-[85dvh] overflow-y-auto no-scrollbar border-t border-line"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-5">
-          <h3 className="font-bold text-lg">{event ? '일정 수정' : '새 일정'}</h3>
+          <h3 className="font-header font-bold text-xl text-ink">{event ? '일정 수정' : '새 일정'}</h3>
           <div className="flex gap-2">
             {event && (
-              <button onClick={handleDelete} className="p-2 text-red-400 hover:bg-red-50 rounded-full">
+              <button onClick={handleDelete} className="p-2 text-yubin hover:bg-yubin/10 rounded-lg">
                 <Trash2 size={18} />
               </button>
             )}
-            <button onClick={onClose} className="p-2 text-gray-400 hover:bg-gray-50 rounded-full">
+            <button onClick={onClose} className="p-2 text-ink/40 hover:bg-line/50 rounded-lg">
               <X size={18} />
             </button>
           </div>
         </div>
 
         {/* 날짜 표시 */}
-        <p className="text-sm text-gray-400 mb-4">{date}</p>
+        <p className="text-sm text-ink/40 mb-4">{date}</p>
 
         {/* 소유자 선택 */}
         <div className="flex gap-2 mb-4">
@@ -113,10 +113,10 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
             <button
               key={opt.value}
               onClick={() => setOwner(opt.value)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all border ${
                 owner === opt.value
-                  ? `${opt.color} text-white shadow-md`
-                  : 'bg-gray-100 text-gray-500'
+                  ? `${opt.color} text-white shadow-sm border-transparent`
+                  : 'bg-paper text-ink/50 border-line hover:border-ink/20'
               }`}
             >
               {opt.label}
@@ -130,7 +130,7 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
           placeholder="일정 제목"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full px-4 py-3 bg-gray-50 rounded-2xl text-sm mb-3 outline-none focus:ring-2 focus:ring-shared/30"
+          className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm mb-3 outline-none focus:ring-2 focus:ring-shared/30 text-ink placeholder:text-ink/30"
         />
 
         {/* 시간 */}
@@ -139,14 +139,14 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
             type="time"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
-            className="flex-1 px-4 py-3 bg-gray-50 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-shared/30"
+            className="flex-1 px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none focus:ring-2 focus:ring-shared/30 text-ink"
           />
-          <span className="self-center text-gray-300">~</span>
+          <span className="self-center text-ink/30">~</span>
           <input
             type="time"
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
-            className="flex-1 px-4 py-3 bg-gray-50 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-shared/30"
+            className="flex-1 px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none focus:ring-2 focus:ring-shared/30 text-ink"
           />
         </div>
 
@@ -156,23 +156,23 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
           value={memo}
           onChange={(e) => setMemo(e.target.value)}
           rows={3}
-          className="w-full px-4 py-3 bg-gray-50 rounded-2xl text-sm mb-3 outline-none resize-none focus:ring-2 focus:ring-shared/30"
+          className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm mb-3 outline-none resize-none focus:ring-2 focus:ring-shared/30 text-ink placeholder:text-ink/30"
         />
 
         {/* 이미지 업로드 */}
         <div className="mb-5">
-          <label className="flex items-center gap-2 px-4 py-3 bg-gray-50 rounded-2xl cursor-pointer hover:bg-gray-100 transition-colors">
-            <ImageIcon size={18} className="text-gray-400" />
-            <span className="text-sm text-gray-400">사진 첨부</span>
+          <label className="flex items-center gap-2 px-4 py-3 bg-paper border border-line rounded-lg cursor-pointer hover:bg-line/30 transition-colors">
+            <ImageIcon size={18} className="text-ink/40" />
+            <span className="text-sm text-ink/40">사진 첨부</span>
             <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
           </label>
           {imagePreview && (
             <div className="mt-2 relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={imagePreview} alt="미리보기" className="w-full h-40 object-cover rounded-2xl" />
+              <img src={imagePreview} alt="미리보기" className="w-full h-40 object-cover rounded-lg" />
               <button
                 onClick={() => { setImageFile(null); setImagePreview(null); }}
-                className="absolute top-2 right-2 p-1 bg-black/50 rounded-full text-white"
+                className="absolute top-2 right-2 p-1 bg-ink/50 rounded-full text-white"
               >
                 <X size={14} />
               </button>
@@ -184,7 +184,7 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
         <button
           onClick={handleSave}
           disabled={!title.trim() || saving}
-          className="w-full py-3.5 bg-shared text-white rounded-2xl font-bold text-sm disabled:opacity-50 active:scale-[0.98] transition-transform"
+          className="w-full py-3.5 bg-paper border-2 border-shared text-shared rounded-lg font-bold text-sm disabled:opacity-50 active:scale-[0.98] transition-all hover:bg-shared hover:text-white"
         >
           {saving ? '저장 중...' : event ? '수정하기' : '저장하기'}
         </button>

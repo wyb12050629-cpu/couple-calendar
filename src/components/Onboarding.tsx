@@ -16,25 +16,25 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center bg-bg-pink px-6">
-      <h1 className="font-header text-3xl text-shared mb-2">Our Calendar</h1>
-      <p className="text-gray-500 mb-10 text-sm">누구인지 알려주세요!</p>
+    <div className="min-h-dvh flex flex-col items-center justify-center px-6">
+      <h1 className="font-header text-4xl text-shared mb-2">Our Calendar</h1>
+      <p className="text-ink/50 mb-10 text-sm font-handwriting text-lg">누구인지 알려주세요!</p>
 
       <div className="flex gap-6">
         <button
           onClick={() => select('yubin')}
-          className="flex flex-col items-center gap-3 p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95"
+          className="flex flex-col items-center gap-3 p-8 bg-paper rounded-lg border border-line shadow-sm hover:shadow-md transition-all hover:scale-105 active:scale-95 rotate-[-1deg]"
         >
           <span className="text-5xl">🔴</span>
-          <span className="text-lg font-bold text-yubin">유빈</span>
+          <span className="text-lg font-header font-bold text-yubin">유빈</span>
         </button>
 
         <button
           onClick={() => select('munsung')}
-          className="flex flex-col items-center gap-3 p-8 bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95"
+          className="flex flex-col items-center gap-3 p-8 bg-paper rounded-lg border border-line shadow-sm hover:shadow-md transition-all hover:scale-105 active:scale-95 rotate-[1deg]"
         >
           <span className="text-5xl">🔵</span>
-          <span className="text-lg font-bold text-munsung">문성</span>
+          <span className="text-lg font-header font-bold text-munsung">문성</span>
         </button>
       </div>
     </div>

@@ -20,14 +20,14 @@ export default function GratitudeCard({ gratitude }: { gratitude: Gratitude }) {
   });
 
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-sm animate-fade-in">
+    <div className="bg-paper rounded-lg p-4 shadow-sm border border-line animate-fade-in rotate-[-0.3deg]">
       <div className="flex items-center justify-between mb-2">
         <span className={`text-xs font-bold ${userColors[gratitude.from_user]}`}>
           {userNames[gratitude.from_user]}
         </span>
-        <span className="text-[10px] text-gray-300">{date}</span>
+        <span className="text-[10px] text-ink/30">{date}</span>
       </div>
-      <p className="text-sm text-gray-700 leading-relaxed">{gratitude.message}</p>
+      <p className="text-sm text-ink/70 leading-relaxed">{gratitude.message}</p>
     </div>
   );
 }

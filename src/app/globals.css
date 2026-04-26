@@ -3,21 +3,32 @@
 @tailwind utilities;
 
 :root {
-  --background: #FFF5F8;
-  --foreground: #333333;
-  --yubin: #FF6B8A;
-  --munsung: #6B9EFF;
-  --shared: #B06BFF;
+  --background: #F5EFE6;
+  --foreground: #4A3F35;
+  --paper: #FAF6EE;
+  --ink: #4A3F35;
+  --yubin: #C97B7B;
+  --munsung: #7B95A8;
+  --shared: #9B8AA8;
+  --accent: #D4A574;
+  --line: #E8DDC9;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: "Nunito", sans-serif;
+  background-color: #F5EFE6;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(232, 221, 201, 0.5) 31px,
+    rgba(232, 221, 201, 0.5) 32px
+  );
+  color: #4A3F35;
+  font-family: "Gowun Dodum", sans-serif;
   max-width: 430px;
   margin: 0 auto;
   min-height: 100dvh;
   position: relative;
+  line-height: 1.75;
 }
 
 /* 파티클 애니메이션 */
