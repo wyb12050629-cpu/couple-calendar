@@ -136,7 +136,7 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
         </div>
 
         {/* 본문 - 스크롤 */}
-        <div className="flex-1 min-h-0 overflow-y-auto px-6 py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-6 py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
           {/* 소유자 선택 */}
           <div className="flex gap-2 mb-4">
             {ownerOptions.map((opt) => (
@@ -164,8 +164,8 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
           />
 
           {/* 날짜 */}
-          <div className="flex gap-3 mb-3">
-            <div className="flex-1">
+          <div className="flex gap-2 mb-3 items-end">
+            <div className="flex-1 min-w-0">
               <label className="text-[11px] text-ink/40 mb-1 block">시작 날짜</label>
               <input
                 type="date"
@@ -174,18 +174,18 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
                   setStartDate(e.target.value);
                   if (endDate < e.target.value) setEndDate(e.target.value);
                 }}
-                className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none focus:ring-2 focus:ring-shared/30 text-ink"
+                className="w-full px-2 py-2.5 bg-paper border border-line rounded-lg text-xs outline-none focus:ring-2 focus:ring-shared/30 text-ink"
               />
             </div>
-            <span className="self-end pb-3 text-ink/30">~</span>
-            <div className="flex-1">
+            <span className="pb-2.5 text-ink/30 text-xs">~</span>
+            <div className="flex-1 min-w-0">
               <label className="text-[11px] text-ink/40 mb-1 block">종료 날짜</label>
               <input
                 type="date"
                 value={endDate}
                 min={startDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none focus:ring-2 focus:ring-shared/30 text-ink"
+                className="w-full px-2 py-2.5 bg-paper border border-line rounded-lg text-xs outline-none focus:ring-2 focus:ring-shared/30 text-ink"
               />
             </div>
           </div>
@@ -203,24 +203,24 @@ export default function EventModal({ date, event, onClose, onSaved }: Props) {
 
           {/* 시간 */}
           {!allDay && (
-            <div className="flex gap-3 mb-3">
-              <div className="flex-1">
+            <div className="flex gap-2 mb-3 items-end">
+              <div className="flex-1 min-w-0">
                 <label className="text-[11px] text-ink/40 mb-1 block">시작 시간</label>
                 <input
                   type="time"
                   value={startTime}
                   onChange={(e) => setStartTime(e.target.value)}
-                  className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none focus:ring-2 focus:ring-shared/30 text-ink"
+                  className="w-full px-2 py-2.5 bg-paper border border-line rounded-lg text-xs outline-none focus:ring-2 focus:ring-shared/30 text-ink"
                 />
               </div>
-              <span className="self-end pb-3 text-ink/30">~</span>
-              <div className="flex-1">
+              <span className="pb-2.5 text-ink/30 text-xs">~</span>
+              <div className="flex-1 min-w-0">
                 <label className="text-[11px] text-ink/40 mb-1 block">종료 시간</label>
                 <input
                   type="time"
                   value={endTime}
                   onChange={(e) => setEndTime(e.target.value)}
-                  className="w-full px-4 py-3 bg-paper border border-line rounded-lg text-sm outline-none focus:ring-2 focus:ring-shared/30 text-ink"
+                  className="w-full px-2 py-2.5 bg-paper border border-line rounded-lg text-xs outline-none focus:ring-2 focus:ring-shared/30 text-ink"
                 />
               </div>
             </div>
