@@ -12,8 +12,8 @@ export function getDDay(): number {
 export function isBirthday(date: Date): { who: string; emoji: string } | null {
   const month = date.getMonth() + 1;
   const day = date.getDate();
-  if (month === 4 && day === 19) return { who: '유빈', emoji: '🎂' };
-  if (month === 12 && day === 5) return { who: '문성', emoji: '🎂' };
+  if (month === 12 && day === 5) return { who: '유빈', emoji: '🎂' };
+  if (month === 4 && day === 19) return { who: '문성', emoji: '🎂' };
   return null;
 }
 
